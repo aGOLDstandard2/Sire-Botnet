@@ -1,0 +1,1 @@
+alias TBath="killall"; alias sire="sire.js"; alias cleanup="tools/cleanup.js"; alias list="tools/listener.js"; alias patient="tools/patient.js"; alias moneys="tools/patient2.js"; alias updater="tools/updater.js"
