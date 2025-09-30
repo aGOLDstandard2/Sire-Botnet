@@ -74,17 +74,22 @@ Without the optional [target], this will cause all of your infected hosts to run
 ***TBath:***
 
 ```
-tbath
-
-// OR
-
 sire tbath
 ```
-If run with Sire, kills all running processes on all infected hosts. Otherwise, kills all processes on self.
+Kills all running processes on all infected hosts.
 
 ---
 
-### Additional Commands:
+### Additional script aliases:
+
+***TBath:***
+
+```
+tbath
+```
+Kills on running processes on self.
+
+<br>
 
 ***List:***
 
