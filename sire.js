@@ -3,7 +3,7 @@ import * as sire from "/utils/sireLib.js";
 export async function main(ns) {
 
   // FOR DEBUG ONLY
-  ns.ui.openTail();
+  //ns.ui.openTail();
 
 //-- Pre-Script --\\
 

@@ -74,9 +74,24 @@ Without the optional [target], this will cause all of your infected hosts to run
 ***TBath:***
 
 ```
+tbath
+
+// OR
+
 sire tbath
 ```
-Kills all running processes on all infected hosts.
+If run with Sire, kills all running processes on all infected hosts. Otherwise, kills all processes on self.
+
+---
+
+### Additional Commands:
+
+***List:***
+
+```
+list
+```
+This will activate the listener. **Note:** If you are using the starting in-game RAM of 8GM, you will need to kill this process before each use of the main script, then start it back up afterwards, otherwise the attack schema will break. (Will eventually add a check for >8GB of RAM on home and autorun feature to main script.) 
 
 ---
 
