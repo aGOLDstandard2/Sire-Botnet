@@ -13,7 +13,7 @@ SireNET is an easy-to-use botnet script, that can be entirely run on the game's 
 
 To get started, copy and paste the following into your in-game terminal to download the installer:
 ```
-wget https://raw.githubusercontent.com/aGOLDstandard2/Sire-Botnet/main/installer.js
+wget https://raw.githubusercontent.com/aGOLDstandard2/Sire-Botnet/main/installer.js /installer.js
 ```
 If all files are downloaded without issue, you'll be asked if you would like a quickstart guide. (Which will be a far less *pretty* version of next section of this README anyways :D )
 </br>
