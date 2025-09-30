@@ -1,9 +1,10 @@
 /** @param {NS} ns */
 export async function main(ns) {
+
+  // Initial Declarations
   const baseURL = "https://raw.githubusercontent.com/aGOLDstandard2/Sire-Botnet/main/";
   ns.print(`Info: Downloading files...`);
   ns.tprint(`Info: Downloading files, please wait...`);
-  let a = false;
   let f = 1;
   let s = 0;
   const maxRetry = 3;
@@ -15,13 +16,13 @@ export async function main(ns) {
   // Main Script
   if (ns.fileExists("/sire.js")) {
     ns.print(`Info: sire.js already found. Skipping.`);
-    a === true;
     f++;
     skipCounter++;
-  } else {
+  }
+  if (!ns.fileExists(`/sire.js`)){
     let retryCounter = 0;
     while (!ns.fileExists("/sire.js") && retryCounter < maxRetry) {
-      ns.print(`Downloading file ${f}/16 - Attempt ${retryCounter + 1}/3`);
+      ns.print(`Downloading file sire.js ${f}/16 - Attempt ${retryCounter + 1}/3`);
       await ns.wget(`${baseURL}sire.js`, `/sire.js`);
       retryCounter++;
 
@@ -29,24 +30,22 @@ export async function main(ns) {
         ns.print(`Warn: File extraction failed!`);
         fileFails.push(`/sire.js`);
         f++
-        continue;
       }
       if (ns.fileExists("/sire.js")) {
-        ns.tprint(`Success: file ${f}/16 aqquired!`);
+        ns.tprint(`Success: file sire.js ${f}/16 aqquired!`);
         fileWins.push(`/sire.js`);
         s++;
         f++;
-        continue;
       }
     }
+    await ns.sleep(100);
   }
 
   // Logs dir creation
   if (ns.fileExists(`/logs/testLog.txt`)) {
     ns.print(`Info: /logs directory already found. Skipping.`);
-    a === true;
-    f++;
     skipCounter++;
+    f++
   } else {
     let retryCounter = 0;
     while (!ns.fileExists("/logs/testLog.txt") && retryCounter < maxRetry) {
@@ -58,30 +57,28 @@ export async function main(ns) {
         ns.print(`Warn: File extraction failed!`);
         fileFails.push(`/logs/testLog.txt`);
         f++;
-        continue;
       }
-      if (ns.fileExists("/logs/testLog.js")) {
-        ns.tprint(`Success: file ${f}/16 aqquired!`);
+      if (ns.fileExists("/logs/testLog.txt")) {
+        ns.tprint(`Success: file /logs/testLog.txt ${f}/16 aqquired!`);
         fileWins.push(`/logs/testLog.txt`);
         f++;
         s++;
-        continue;
       }
     }
+    await ns.sleep(100);
   }
 
-  // Tools
+// Tools
   const tools = [`cleanup.js`, `listener.js`, `jump.js`, `patient.js`, `patient2.js`, `updater.js`];
-  for (let i = 0; i < tools.length; i++) {
-    if (ns.fileExists(`/tools/${tools[i]}`)) {
+  for (let i = 0; i <= tools.length; i++) {
+    if (ns.fileExists(`/tools/${tools[i]}`) && tools[i] !== undefined) {
       ns.print(`Info: ${tools[i]} already found. Skipping.`);
-      a === true;
-      f++;
       skipCounter++;
-    } else {
+    }
+    if (!ns.fileExists(`/tools/${tools[i]}`) && tools[i] !== undefined){
       let retryCounter = 0;
       while (!ns.fileExists(`/tools/${tools[i]}`) && retryCounter < maxRetry) {
-        ns.print(`Downloading file ${f}/16 - Attempt ${retryCounter + 1}/3`);
+        ns.print(`Downloading file ${tools[i]} ${f}/16 - Attempt ${retryCounter + 1}/3`);
         await ns.wget(`${baseURL}tools/${tools[i]}`, `/tools/${tools[i]}`);
         retryCounter++;
 
@@ -89,50 +86,51 @@ export async function main(ns) {
           ns.print(`Error: File extraction failed!`);
           fileFails.push(`/tools/${tools[i]}`);
           f++;
-          continue;
         }
         if (ns.fileExists(`/tools/${tools[i]}`)) {
-          ns.tprint(`Success: file ${f}/16 aqquired!`);
+          ns.tprint(`Success: file ${tools[i]} ${f}/16 aqquired!`);
           fileWins.push(`/tools/${tools[i]}`);
           f++;
           s++;
-          continue;
         }
       }
+      await ns.sleep(100);
     }
   }
+  await ns.sleep(100);
+  ns.print(`/tools directory building complete.`);
 
   // Utils
   const utils = [`alias.txt`, `guestBook.txt`, `lkt.txt`, `serverInfo.txt`, `sireLib.js`, `w.js`, `h.js`, `g.js`];
-  for (let i = 0; i < utils.length; i++) {
-    if (ns.fileExists(`/utils/${utils[i]}`)) {
+  for (let i = 0; i <= utils.length; i++) {
+    if (ns.fileExists(`/utils/${utils[i]}`) && utils[i] !== undefined) {
       ns.print(`Info: ${utils[i]} already found. Skipping.`);
-      a === true;
-      f++;
       skipCounter++;
-      ns.print(`${skipCounter}`);
-    } else if (!a) {
+    }
+    if (!ns.fileExists(`/utils/${utils[i]}`) && utils[i] !== undefined){
       let retryCounter = 0;
       while (!ns.fileExists(`/utils/${utils[i]}`) && retryCounter < maxRetry) {
-        ns.print(`Downloading file ${f}/16 - Attempt ${retryCounter + 1}/3`);
+        ns.print(`Downloading file ${utils[i]} ${f}/16 - Attempt ${retryCounter + 1}/3`);
+        await ns.wget(`${baseURL}utils/${utils[i]}`, `/utils/${utils[i]}`);
         retryCounter++;
 
         if (retryCounter >= maxRetry) {
           ns.print(`Error: File extraction failed!`);
           fileFails.push(`/utils/${utils[i]}`);
           f++;
-          continue;
         }
         if (ns.fileExists(`/utils/${utils[i]}`)) {
-          ns.tprint(`Success: file ${f}/16 aqquired!`);
+          ns.tprint(`Success: file ${utils[i]} ${f}/16 aqquired!`);
           fileWins.push(`/utils/${utils[i]}`);
-          s++;
           f++;
-          continue;
+          s++;
         }
       }
+      await ns.sleep(100);
     }
   }
+  await ns.sleep(100);
+  ns.print(`/utils directory building complete.`);
 
   // Cleanup
   ns.print(`Info: Cleaning up...`);
